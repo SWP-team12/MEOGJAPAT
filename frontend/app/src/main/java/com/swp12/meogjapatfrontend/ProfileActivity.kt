@@ -21,6 +21,8 @@ class ProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
+
+
         // 아래 주석처리된 코드 전부: 오류 원인 확인 후 수정 예정 -> activity_profile의 layout id 인식을 못함
         /*btn_navigation.setOnClickListener{
             layout_drawer.openDrawer(GravityCompat.STRAT)   //START: left, END: right

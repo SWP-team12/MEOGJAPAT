@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
 }
 
 android {
@@ -9,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.swp12.meogjapatfrontend"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -46,4 +47,11 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    // 카카오 로그인 api를 위해 추가
+    implementation "com.kakao.sdk:v2-user:2.4.2" // 카카오 로그인
+    implementation "com.kakao.sdk:v2-talk:2.4.2" // 친구, 메시지(카카오톡)
+    implementation "com.kakao.sdk:v2-story:2.4.2" // 카카오스토리
+    implementation "com.kakao.sdk:v2-link:2.4.2" // 메시지(카카오링크)
+    implementation "com.kakao.sdk:v2-navi:2.4.2" // 카카오내비
 }

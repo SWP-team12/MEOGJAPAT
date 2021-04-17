@@ -8,4 +8,5 @@
     <string name="text_3">계좌</string>
     <string name="title_profile">Profile</string>
     <string name="button_navi">네비게이션 버튼</string>
+    <string name="native_app_key">0b16f043f7aa3320a40ee5221cab4fc7</string>
 </resources>
