@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -18,9 +19,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo"
         android:contentDescription="@string/logo" />
-
-    <!--sns연동 로그인은 api 사용하면서-->
-
-    <!--sns연동 끝난 후 회원가입 용 팝업창 (닉네임, 계좌 입력)-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
