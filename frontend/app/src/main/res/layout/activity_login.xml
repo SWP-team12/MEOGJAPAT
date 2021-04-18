@@ -11,13 +11,41 @@
     <ImageView
         android:id="@+id/img_logo"
         android:layout_width="wrap_content"
-        android:layout_height="294dp"
-        android:layout_marginTop="122dp"
+        android:layout_height="266dp"
+        android:layout_marginTop="148dp"
+        android:contentDescription="@string/logo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo"
-        android:contentDescription="@string/logo" />
+        app:srcCompat="@drawable/logo" />
 
+<<<<<<< Updated upstream
+=======
+    <!--카카오 로그인 버튼-->
+    <ImageButton
+        android:id="@+id/btn_kakao_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="560dp"
+        android:padding="0dp"
+        android:src="@drawable/kakao_login_medium_narrow"
+        android:contentDescription="kakao login button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/test_alertdialog"
+        android:layout_width="154dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="30dp"
+        android:text="@string/text_test"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+>>>>>>> Stashed changes
 </androidx.constraintlayout.widget.ConstraintLayout>

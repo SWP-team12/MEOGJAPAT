@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.core.view.GravityCompat
 import com.google.android.material.navigation.NavigationView
+import kotlinx.android.synthetic.main.activity_profile.*
 
 /*
 출력할 각 TextView id
@@ -21,13 +23,18 @@ class ProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
+<<<<<<< Updated upstream
         // 아래 주석처리된 코드 전부: 오류 원인 확인 후 수정 예정 -> activity_profile의 layout id 인식을 못함
         /*btn_navigation.setOnClickListener{
             layout_drawer.openDrawer(GravityCompat.STRAT)   //START: left, END: right
-        }
+=======
 
-        navigationView.serNavigationItemSelectedListener(this)  //네비게이션 메뉴 아이템에 클릭 속성 부여
-         */
+        btn_navigation.setOnClickListener{
+            layout_drawer.openDrawer(GravityCompat.START)   //START: left, END: right
+>>>>>>> Stashed changes
+        }
+        navigationView.setNavigationItemSelectedListener(this)  //네비게이션 메뉴 아이템에 클릭 속성 부여
+
     }
 
     //네비게이션 메뉴 아이템 클릭 시 수행하는 메소드
@@ -35,7 +42,7 @@ class ProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         when (item.itemId){
             R.id.home -> Toast.makeText(applicationContext, "메인화면", Toast.LENGTH_SHORT).show()  //테스트용
 
-            /* 모든 화면 작성 후 아이템 클릭 시 이동 구현
+           /* 모든 화면 작성 후 아이템 클릭 시 이동 구현
             R.id.home ->
             R.id.edit_meeting ->
             R.id.participated_meeting ->
@@ -43,13 +50,13 @@ class ProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
             R.id.profile -> 
             */
         }
-       // layout_drawer.closeDrawers()    //네비게이션 닫기
+        layout_drawer.closeDrawers()    //네비게이션 닫기
         return false
     }
 
     //백버튼 누를 시 수행하는 메소드
     override fun onBackPressed() {
-        /*
+
         if(layout_drawer.isDrawerOpen(GravityCompat.START))
         {
             layout_drawer.closeDrawers()
@@ -58,6 +65,6 @@ class ProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         {
             super.onBackPressed()   //일반 백버튼 실행
         }
-         */
+
     }
 }
