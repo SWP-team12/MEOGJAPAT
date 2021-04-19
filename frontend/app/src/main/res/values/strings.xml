@@ -9,4 +9,12 @@
     <string name="title_profile">Profile</string>
     <string name="button_navi">네비게이션 버튼</string>
     <string name="native_app_key">0b16f043f7aa3320a40ee5221cab4fc7</string>
+    <string name="text_account">계좌</string>
+    <string name="text_nickname">닉네임</string>
+    <string name="text_signup">회원가입</string>
+    <string name="text_test">Test</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dialog_account">계좌</string>
+    <string name="dialog_nickname">닉네임</string>
 </resources>

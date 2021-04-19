@@ -15,7 +15,6 @@
         tools:context=".ProfileActivity">
 
         <!--상단 툴바-->
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_profile"
             android:layout_width="match_parent"
@@ -47,7 +46,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
             android:layout_marginTop="92dp"
             android:text="@string/text_1"
             android:textColor="@color/black"
@@ -61,7 +59,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
             android:layout_marginTop="140dp"
             android:text="@string/text_2"
             android:textColor="@color/black"
@@ -75,7 +72,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
             android:layout_marginTop="192dp"
             android:text="@string/text_3"
             android:textColor="@color/black"
@@ -89,8 +85,7 @@
             android:id="@+id/tv_nickname"
             android:layout_width="250dp"
             android:layout_height="25dp"
-            android:layout_marginStart="48dp"
-            android:layout_marginLeft="48dp"
+            android:layout_marginStart="50dp"
             android:layout_marginTop="92dp"
             android:text="TextView"
             android:textColor="@color/black"
@@ -104,8 +99,7 @@
             android:id="@+id/tv_age"
             android:layout_width="250dp"
             android:layout_height="25dp"
-            android:layout_marginStart="48dp"
-            android:layout_marginLeft="48dp"
+            android:layout_marginStart="50dp"
             android:layout_marginTop="140dp"
             android:text="TextView"
             android:textColor="@color/black"
@@ -119,8 +113,7 @@
             android:id="@+id/tv_account"
             android:layout_width="250dp"
             android:layout_height="25dp"
-            android:layout_marginStart="48dp"
-            android:layout_marginLeft="48dp"
+            android:layout_marginStart="50dp"
             android:layout_marginTop="192dp"
             android:text="TextView"
             android:textColor="@color/black"
@@ -130,15 +123,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <!--수정 버튼-->
-
-        <!--로그아웃 버튼-->
-
         <Button
             android:id="@+id/btn_edit"
             android:layout_width="100dp"
             android:layout_height="45dp"
             android:layout_marginTop="250dp"
             android:text="@string/btn_edit"
+            android:textColor="#FFFFFF"
             android:textStyle="bold"
             app:backgroundTint="#F44336"
             app:layout_constraintEnd_toEndOf="parent"
@@ -146,12 +137,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!--로그아웃 버튼-->
         <Button
             android:id="@+id/btn_logout"
             android:layout_width="100dp"
             android:layout_height="45dp"
             android:layout_marginTop="250dp"
             android:text="@string/btn_logout"
+            android:textColor="#FFFFFF"
             android:textStyle="bold"
             app:backgroundTint="#F44336"
             app:layout_constraintEnd_toEndOf="parent"
@@ -159,6 +152,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!--네비게이션 메뉴-->
         <ImageView
             android:id="@+id/btn_navigation"
             android:layout_width="wrap_content"
