@@ -55,4 +55,8 @@ dependencies {
     implementation "com.kakao.sdk:v2-story:2.4.2" // 카카오스토리
     implementation "com.kakao.sdk:v2-link:2.4.2" // 메시지(카카오링크)
     implementation "com.kakao.sdk:v2-navi:2.4.2" // 카카오내비
+
+    // 백엔드와의 API 통신을 위해 추가
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
 }

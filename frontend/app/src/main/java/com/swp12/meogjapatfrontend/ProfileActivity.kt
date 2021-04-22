@@ -26,15 +26,11 @@ class ProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
 
         // 아래 주석처리된 코드 전부: 오류 원인 확인 후 수정 예정 -> activity_profile의 layout id 인식을 못함
         /*btn_navigation.setOnClickListener{
-            layout_drawer.openDrawer(GravityCompat.STRAT)   //START: left, END: right
-
-        btn_navigation.setOnClickListener{
             layout_drawer.openDrawer(GravityCompat.START)   //START: left, END: right
         }
         navigationView.setNavigationItemSelectedListener(this)  //네비게이션 메뉴 아이템에 클릭 속성 부여
-
+         */
     }
-
     //네비게이션 메뉴 아이템 클릭 시 수행하는 메소드
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId){
@@ -63,6 +59,5 @@ class ProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         {
             super.onBackPressed()   //일반 백버튼 실행
         }
-
-    }
+     }
 }
