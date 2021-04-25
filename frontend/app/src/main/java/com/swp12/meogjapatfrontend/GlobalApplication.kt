@@ -22,6 +22,9 @@ class GlobalApplication: Application() {
         INSTANCE = this
     }
 
+    // ID 초기화
+    var id: Long = 0
+
     // REST API 사용 준비
     val api: BackendAPI = BackendAPI.create()
 
@@ -30,5 +33,6 @@ class GlobalApplication: Application() {
 
         // Kakao SDK 초기화
         KakaoSdk.init(this, getString(R.string.native_app_key))
+        id = UserPreference().getUserId("id")
     }
 }

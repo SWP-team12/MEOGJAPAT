@@ -16,8 +16,15 @@ interface BackendAPI {
     // 5. 어떤 형태의 응답을 받을 것인가?
     // 등에 따라 인터페이스를 선언해야 한다.
 
-    @GET("/api/student")
-    fun getUsers() : Call<List<User>>
+    @GET("/api/user/{u_id}")
+    fun getUser(@Path("u_id") id: Long) : Call<User>
+
+    @GET("/api/user")
+    fun readUserWithSnsId(@Query("sns_id") id: String?) : Call<User>
+
+    // 생성된 사용자의 u_id 반환 필수! 백엔드에 요청할 것!
+    @POST("/api/user")
+    fun createUser(@Body user: PostUser) : Call<UserId>
 
     // 요청 선언부 종료
 

@@ -2,30 +2,30 @@ package com.swp12.meogjapatfrontend
 
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AlertDialog
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.UserApiClient
+import com.swp12.meogjapatfrontend.api.PostUser
 
-import com.swp12.meogjapatfrontend.api.CallbackGetUsers
+import com.swp12.meogjapatfrontend.api.User
+import com.swp12.meogjapatfrontend.api.UserId
 
 import kotlinx.android.synthetic.main.activity_login.*
+
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // 1. Listener 함수 모두 onCreate()와 별도로 선언할 수 있게 하기
 
 class LoginActivity : AppCompatActivity() {
-    private var nickname: String? = null
-    private var account: String? = null
-
-    private var dialog: AlertDialog? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-        buildDialog()
 
         // 카카오톡 설치시 앱으로, 미설치시 웹으로 연동 로그인
         btn_kakao_login.setOnClickListener {
@@ -54,19 +54,40 @@ class LoginActivity : AppCompatActivity() {
                 val t = Toast.makeText(this, error.message, Toast.LENGTH_SHORT)
                 t.show()
             } else if (user != null) {
-                if (isSignedIn(user.id)) { // 정보 있을 시
-                    // 사용자정보와 함께 메인화면으로 Intent
-                } else {
-                    val t = Toast.makeText(this, "Not signed in", Toast.LENGTH_SHORT)
-                    t.show()
+                // API를 통해 가입여부 확인
+                // val accountCheck = GlobalApplication.INSTANCE.api.readUserWithSnsId(user.id.toString())
+                // 테스트를 위해 임의의 값
+                // val snsId: Long = 3513532
+                val snsId: Long = 3513531
+                val readUserWithSnsIdCall = GlobalApplication.INSTANCE.api.readUserWithSnsId(snsId.toString())
+                readUserWithSnsIdCall.enqueue(
+                    object : Callback<User> {
+                        override fun onResponse(call: Call<User>, response: Response<User>) {
+                            if (response.isSuccessful) {
+                                val uId = response.body()!!.uId.toLong()
+                                UserPreference().setUserId("id", uId)
 
-                    dialog!!.show()
-                }
+                                GlobalApplication.INSTANCE.id = uId
+
+                                // MainActivity로 넘어가기
+                            } else {
+                                Toast.makeText(GlobalApplication.INSTANCE, "Not signed in", Toast.LENGTH_SHORT).show()
+                                buildDialog(snsId).show()
+                            }
+                        }
+
+                        override fun onFailure(call: Call<User>, t: Throwable) {
+                            Log.e("Retrofit Error : ", t.message.toString())
+
+                            Toast.makeText(GlobalApplication.INSTANCE, "Retrofit Error : ${t.message.toString()}", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                )
             }
         }
     }
 
-    private fun buildDialog() {
+    private fun buildDialog(snsId : Long) : AlertDialog {
         val builder = AlertDialog.Builder(this)
 
         builder.setTitle("회원가입")
@@ -79,28 +100,36 @@ class LoginActivity : AppCompatActivity() {
             val dialogAccount: EditText? = dialog.findViewById<EditText>(R.id.editText_account)
 
             //여기에 입력받은 닉네임, 계좌를 변수에 저장하는 코드
-            nickname = dialogNickname!!.text.toString()
-            account = dialogAccount!!.text.toString()
+            val user = PostUser(dialogNickname!!.text.toString(), dialogAccount!!.text.toString(), snsId)
 
-            // Sample code Start - 실제 코드로 바꾸기!
-            val callGetUser = GlobalApplication.INSTANCE.api.getUsers()
-            callGetUser.enqueue(CallbackGetUsers())
-            // Sample code End - 실제 코드로 바꾸기!
+            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show()
 
-            // 통신 라이브러리를 사용해 백엔드에 저장하는 코드 필요!
-            // 이후 사용자 정보와 함께 메인화면으로 Intent
+            val createUserCall = GlobalApplication.INSTANCE.api.createUser(user)
+            createUserCall.enqueue(
+                object : Callback<UserId> {
+                    override fun onResponse(call: Call<UserId>, response: Response<UserId>) {
+                        if (response.isSuccessful) {
+                            UserPreference().setUserId("id", response.body()!!.u_id)
+
+                            GlobalApplication.INSTANCE.id = response.body()!!.u_id
+
+                            // MainActivity로 넘어가기
+                        }
+                    }
+
+                    override fun onFailure(call: Call<UserId>, t: Throwable) {
+                        Log.e("Retrofit Error : ", t.message.toString())
+
+                        Toast.makeText(GlobalApplication.INSTANCE, "Retrofit Error : ${t.message.toString()}", Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+            )
         }
 
         builder.setPositiveButton("확인", listener)
         builder.setNegativeButton("취소", null)
 
-        dialog = builder.create()
-    }
-
-    private fun isSignedIn(snsId: Long): Boolean {
-        // 통신 라이브러리를 사용해 가입된 사용자 여부를 판별함
-        // 임시로 0 아닌 값 반환
-
-        return false
+        return builder.create()
     }
 }
