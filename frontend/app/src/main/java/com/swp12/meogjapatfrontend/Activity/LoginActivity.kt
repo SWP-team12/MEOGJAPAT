@@ -1,32 +1,19 @@
-package com.swp12.meogjapatfrontend
+package com.swp12.meogjapatfrontend.Activity
 
-import android.app.Dialog
-import android.content.Context
 import android.content.DialogInterface
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Base64
-import android.view.WindowManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AlertDialog
 import com.kakao.sdk.auth.model.OAuthToken
-import com.kakao.sdk.common.KakaoSdk
-import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 
-import okhttp3.internal.Util
-import java.security.MessageDigest
-import android.util.Log
-import android.view.View
-import com.google.gson.JsonArray
+import com.swp12.meogjapatfrontend.CallbackGitHubUser
+import com.swp12.meogjapatfrontend.GlobalApplication
+import com.swp12.meogjapatfrontend.R
 
 import kotlinx.android.synthetic.main.activity_login.*
-import retrofit2.Call
-import retrofit2.Response
-import retrofit2.create
-import javax.security.auth.callback.Callback
 
 // 1. Listener 함수 모두 onCreate()와 별도로 선언할 수 있게 하기
 
