@@ -1,32 +1,17 @@
 package com.swp12.meogjapatfrontend
 
-import android.app.Dialog
-import android.content.Context
 import android.content.DialogInterface
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Base64
-import android.view.WindowManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AlertDialog
 import com.kakao.sdk.auth.model.OAuthToken
-import com.kakao.sdk.common.KakaoSdk
-import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 
-import okhttp3.internal.Util
-import java.security.MessageDigest
-import android.util.Log
-import android.view.View
-import com.google.gson.JsonArray
+import com.swp12.meogjapatfrontend.api.CallbackGetUsers
 
 import kotlinx.android.synthetic.main.activity_login.*
-import retrofit2.Call
-import retrofit2.Response
-import retrofit2.create
-import javax.security.auth.callback.Callback
 
 // 1. Listener 함수 모두 onCreate()와 별도로 선언할 수 있게 하기
 
@@ -98,8 +83,8 @@ class LoginActivity : AppCompatActivity() {
             account = dialogAccount!!.text.toString()
 
             // Sample code Start - 실제 코드로 바꾸기!
-            val callGetGitHubUser = GlobalApplication.INSTANCE.api.getUser("hatchling13")
-            callGetGitHubUser.enqueue(CallbackGitHubUser())
+            val callGetUser = GlobalApplication.INSTANCE.api.getUsers()
+            callGetUser.enqueue(CallbackGetUsers())
             // Sample code End - 실제 코드로 바꾸기!
 
             // 통신 라이브러리를 사용해 백엔드에 저장하는 코드 필요!

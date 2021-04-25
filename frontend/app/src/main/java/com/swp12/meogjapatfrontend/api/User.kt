@@ -1,7 +1,6 @@
 package com.swp12.meogjapatfrontend.api
 
-import android.widget.Toast
-import com.swp12.meogjapatfrontend.GlobalApplication
+import android.util.Log
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,14 +19,14 @@ data class User(
         var rudeCount: Number = 0
 )
 
-class CallbackGetUser : Callback<User> {
-    override fun onResponse(call: Call<User>, response: Response<User>) {
-        TODO("Not yet implemented")
+class CallbackGetUsers : Callback<List<User>> {
+    override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+        Log.d("User", response.body().toString())
     }
 
-    override fun onFailure(call: Call<User>, t: Throwable) {
-        val errorToast = Toast.makeText(GlobalApplication.INSTANCE, "Request failed with this reason: ${t.message}", Toast.LENGTH_SHORT)
-        errorToast.show()
+    override fun onFailure(call: Call<List<User>>, t: Throwable) {
+        Log.e("User", t.message.toString())
     }
+
 }
 

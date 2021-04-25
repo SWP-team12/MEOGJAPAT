@@ -1,11 +1,8 @@
 package com.swp12.meogjapatfrontend
 
 import android.app.Application
-import android.util.Log
-import android.widget.Toast
 import com.kakao.sdk.common.KakaoSdk
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.swp12.meogjapatfrontend.api.BackendAPI
 
 // 기능 구현을 달성하기 위해 해야할 작업들과 별도 세부 내용을 여기 기록하자.
 // 1. GlobalApplication 생성하여 Kakao SDK 초기화 작업 빼내기 - 완료!
