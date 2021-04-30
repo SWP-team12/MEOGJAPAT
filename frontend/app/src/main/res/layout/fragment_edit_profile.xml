@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Dialog.EditProfileFragment"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#FFFFFF"
@@ -41,7 +42,7 @@
         android:ems="10"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
-        android:text="@string/nickname"
+        android:text="닉네임을 입력하시오"
         android:textColor="#838383" />
 
     <EditText
@@ -54,11 +55,11 @@
         android:ems="10"
         android:importantForAutofill="no"
         android:inputType="text"
-        android:text="@string/account"
+        android:text="계좌를 입력하시오"
         android:textColor="#787878" />
 
     <Button
-        android:id="@+id/btn_d_profile_ok"
+        android:id="@+id/btn_edit_profile_ok"
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:layout_gravity="left"
@@ -70,7 +71,7 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/btn_d_profile_cancle"
+        android:id="@+id/btn_edit_profile_cancle"
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:layout_gravity="right"

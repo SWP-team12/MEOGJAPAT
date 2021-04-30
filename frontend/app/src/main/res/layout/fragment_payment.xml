@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Dialog.PaymentFragment"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#FFFFFF"
@@ -20,7 +21,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/tv_dialog_patment_account"
+        android:id="@+id/tv_payment_account"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -71,9 +72,8 @@
         android:textSize="18sp" />
 
 
-
     <CheckBox
-        android:id="@+id/cb_d_payment_rude1"
+        android:id="@+id/cb_payment_rude1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="200sp"
@@ -81,7 +81,7 @@
         android:text="@string/rude" />
 
     <CheckBox
-        android:id="@+id/cb_d_payment_rude2"
+        android:id="@+id/cb_payment_rude2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="200sp"
@@ -89,7 +89,7 @@
         android:text="@string/rude" />
 
     <CheckBox
-        android:id="@+id/cb_d_payment_rude3"
+        android:id="@+id/cb_payment_rude3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="200sp"
@@ -97,7 +97,7 @@
         android:text="@string/rude" />
 
     <CheckBox
-        android:id="@+id/cb_d_payment_run1"
+        android:id="@+id/cb_payment_run1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="300sp"
@@ -105,7 +105,7 @@
         android:text="@string/run" />
 
     <CheckBox
-        android:id="@+id/cb_d_payment_run2"
+        android:id="@+id/cb_payment_run2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="300sp"
@@ -113,7 +113,7 @@
         android:text="@string/run" />
 
     <CheckBox
-        android:id="@+id/cb_d_payment_run3"
+        android:id="@+id/cb_payment_run3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="300sp"
@@ -121,7 +121,7 @@
         android:text="@string/run" />
 
     <Button
-        android:id="@+id/btn_d_payment"
+        android:id="@+id/btn_payment"
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
