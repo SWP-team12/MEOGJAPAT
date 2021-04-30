@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="600dp"
+    android:background="#FFFFFF"
+    android:gravity="top"
+    android:layout_gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/area"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="250dp"
+        android:text="@string/fellowship"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="400dp"
+        android:text="@string/age_group"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+    <!--지역 선택: listview를 포함하는 fragment를 새로 띄우는 쪽으로 변경(dialog_listview_area)-->
+
+    <!--연령대 선택: listview를 포함하는 fragment를 새로 띄우는 쪽으로 변경(dialog_listview_age) -->
+
+
+
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_d_filtering_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="300dp"
+            android:text="@string/all"
+            android:textColor="@color/black"
+            android:textSize="19sp" />
+
+        <RadioButton
+            android:id="@+id/rb_d_filtering_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="300dp"
+            android:text="@string/yes"
+            android:textColor="@color/black"
+            android:textSize="19sp" />
+
+        <RadioButton
+            android:id="@+id/rb_d_filtering_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="300dp"
+            android:text="@string/no"
+            android:textColor="@color/black"
+            android:textSize="19sp" />
+    </RadioGroup>
+
+
+
+    <Button
+        android:id="@+id/btn_filtering_ok"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="550dp"
+        android:background="#F44336"
+        android:text="@string/ok"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
+
+</FrameLayout>

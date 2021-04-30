@@ -9,31 +9,31 @@
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/editText_nickname"
+        android:id="@+id/et_signup_nickname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="76dp"
         android:layout_marginEnd="15dp"
         android:ems="10"
-        android:hint="@string/dialog_nickname"
+        android:hint="@string/nickname"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
-        android:text="@string/dialog_nickname"
+        android:text="@string/nickname"
         android:textColor="#838383" />
 
     <EditText
-        android:id="@+id/editText_account"
+        android:id="@+id/et_signup_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="15dp"
         android:ems="10"
-        android:hint="@string/dialog_account"
+        android:hint="@string/account"
         android:importantForAutofill="no"
         android:inputType="text"
-        android:text="@string/dialog_account"
+        android:text="@string/account"
         android:textColor="#787878" />
 
 </LinearLayout>

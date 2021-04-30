@@ -6,16 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".Fragment.ProfileFragment">
 
-    <TextView
-        android:id="@+id/title_profile"
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_profile"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/title_profile"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:textStyle="bold"/>
+        android:layout_gravity="center_horizontal|top"
+        android:background="#F44336"
+        android:minHeight="50dp"
+        android:theme="?attr/actionBarTheme">
+
+        <TextView
+            android:id="@+id/title_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_profile"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
+
 
     <TextView
         android:id="@+id/textView1"
@@ -23,9 +33,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="92dp"
-        android:text="@string/text_1"
+        android:text="@string/nickname"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
@@ -34,9 +44,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="140dp"
-        android:text="@string/text_2"
+        android:text="@string/age_group"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold"/>
 
     <TextView
@@ -45,9 +55,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="192dp"
-        android:text="@string/text_3"
+        android:text="@string/account"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold"/>
 
     <TextView
@@ -58,7 +68,7 @@
         android:layout_marginTop="92dp"
         android:text="TextView"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
@@ -69,7 +79,7 @@
         android:layout_marginTop="140dp"
         android:text="TextView"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
@@ -80,7 +90,7 @@
         android:layout_marginTop="192dp"
         android:text="TextView"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <Button
@@ -90,7 +100,7 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="300dp"
         android:background="#F44336"
-        android:text="@string/btn_edit"
+        android:text="@string/edit"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
 
@@ -101,7 +111,7 @@
         android:layout_marginStart="220dp"
         android:layout_marginTop="300dp"
         android:background="#F44336"
-        android:text="@string/btn_logout"
+        android:text="@string/logout"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
 

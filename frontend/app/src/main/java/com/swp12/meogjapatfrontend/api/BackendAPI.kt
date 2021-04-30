@@ -1,11 +1,6 @@
-package com.swp12.meogjapatfrontend
+package com.swp12.meogjapatfrontend.api
 
-import android.util.Log
-import android.widget.Toast
-import com.google.gson.JsonArray
 import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
@@ -21,14 +16,22 @@ interface BackendAPI {
     // 5. 어떤 형태의 응답을 받을 것인가?
     // 등에 따라 인터페이스를 선언해야 한다.
 
-    @GET("/users/{username}")
-    fun getUser(@Path("username") userName: String) : Call<GitHubUser>
+    @GET("/api/user/{u_id}")
+    fun getUser(@Path("u_id") id: Long) : Call<User>
+
+    @GET("/api/user")
+    fun readUserWithSnsId(@Query("sns_id") id: String?) : Call<User>
+
+    // 생성된 사용자의 u_id 반환 필수! 백엔드에 요청할 것!
+    @POST("/api/user")
+    fun createUser(@Body user: PostUser) : Call<UserId>
 
     // 요청 선언부 종료
 
     // REST API 클라이언트 생성
     companion object {
-        private const val BASE_URL = "https://api.github.com/"
+        // 테스트를 위해 로컬 호스트로 접속
+        private const val BASE_URL = "http://192.168.0.18:8000/"
 
         fun create(): BackendAPI {
             return Retrofit.Builder()
@@ -37,26 +40,5 @@ interface BackendAPI {
                 .build()
                 .create(BackendAPI::class.java)
         }
-    }
-}
-
-// 이후로는 분리해내기 쉽게, UI에 직접적 영향이 최대한 가지 않도록!
-
-// 데이터 클래스 선언부
-data class GitHubUser(
-    var id: Number = 0,
-    var name: String = "",
-    var bio: String = ""
-)
-
-// Callback 정의부
-class CallbackGitHubUser : Callback<GitHubUser> {
-    override fun onResponse(call: Call<GitHubUser>, response: Response<GitHubUser>) {
-        val t = Toast.makeText(GlobalApplication.INSTANCE, response.body().toString(), Toast.LENGTH_SHORT)
-        t.show()
-    }
-
-    override fun onFailure(call: Call<GitHubUser>, t: Throwable) {
-        Log.d("GitHub", "Failed to get data : $t")
     }
 }
