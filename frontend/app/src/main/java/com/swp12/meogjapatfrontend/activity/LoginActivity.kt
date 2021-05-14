@@ -1,4 +1,4 @@
-package com.swp12.meogjapatfrontend.Activity
+package com.swp12.meogjapatfrontend.activity
 
 import android.content.DialogInterface
 import android.os.Bundle

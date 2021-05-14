@@ -22,4 +22,7 @@
     <style name="Theme.MeogjapatFrontend.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.MeogjapatFrontend.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+
 </resources>

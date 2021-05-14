@@ -1,4 +1,4 @@
-package com.swp12.meogjapatfrontend.Fragment
+package com.swp12.meogjapatfrontend.Fragment_navi
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.swp12.meogjapatfrontend.R
-import android.widget.Button
 
 /*
 출력할 각 TextView id

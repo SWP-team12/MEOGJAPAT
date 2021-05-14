@@ -1,28 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.NotificationFragment">
+    tools:context=".Fragment_navi.NotificationFragment">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_notification"
+    <ListView
+        android:id="@+id/lv_notification"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|top"
-        android:background="#F44336"
-        android:minHeight="50dp"
-        android:theme="?attr/actionBarTheme">
-
-        <TextView
-            android:id="@+id/title_notification"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/title_notification"
-            android:textColor="#FFFFFF"
-            android:textSize="26sp"
-            android:textStyle="bold" />
-
-    </androidx.appcompat.widget.Toolbar>
+        android:layout_height="match_parent"
+        android:background="#FFFFFF" />
 
 </FrameLayout>
