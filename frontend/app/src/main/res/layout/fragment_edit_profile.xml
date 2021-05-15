@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".dialog.EditProfileFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:gravity="center" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/nickname"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="250dp"
+        android:text="@string/account"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+    <EditText
+        android:id="@+id/et_edit_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="15dp"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:text="닉네임을 입력하시오"
+        android:textColor="#838383" />
+
+    <EditText
+        android:id="@+id/et_edit_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="15dp"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:text="계좌를 입력하시오"
+        android:textColor="#787878" />
+
+    <Button
+        android:id="@+id/btn_edit_profile_ok"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_gravity="start"
+        android:layout_marginTop="600dp"
+        android:layout_marginStart="90dp"
+        android:background="#4169E1"
+        android:text="확인"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btn_edit_profile_cancel"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="600dp"
+        android:layout_marginEnd="90dp"
+        android:background="#4169E1"
+        android:text="취소"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
+
+</FrameLayout>

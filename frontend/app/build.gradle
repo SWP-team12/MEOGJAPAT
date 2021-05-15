@@ -43,7 +43,11 @@ dependencies {
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'//추가
+    implementation 'androidx.cardview:cardview:1.0.0'//cardview 추가
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'// 추가
+    implementation 'com.android.support:design:30.0.0'// UI 디자인 참고용
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
@@ -59,4 +63,11 @@ dependencies {
     // 백엔드와의 API 통신을 위해 추가
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+
+    //UI 디자인 참고를 위해 추가
+    implementation 'nl.joery.animatedbottombar:library:1.0.9'
+
+    // 모임 세부 정보 액티비티 디자인을 위해 추가
+    implementation 'com.github.badoualy:stepper-indicator:1.0.7'
+    implementation 'com.mikhaellopez:circularprogressbar:3.0.3'
 }

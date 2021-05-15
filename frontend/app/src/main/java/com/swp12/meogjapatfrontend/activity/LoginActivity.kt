@@ -1,6 +1,7 @@
-package com.swp12.meogjapatfrontend
+package com.swp12.meogjapatfrontend.activity
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
@@ -9,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AlertDialog
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.UserApiClient
+import com.swp12.meogjapatfrontend.GlobalApplication
+import com.swp12.meogjapatfrontend.R
+import com.swp12.meogjapatfrontend.UserPreference
 import com.swp12.meogjapatfrontend.api.PostUser
 
 import com.swp12.meogjapatfrontend.api.User
@@ -38,27 +42,21 @@ class LoginActivity : AppCompatActivity() {
     }
 
     // 카카오 로그인 여부 처리 콜백
-    // 에러 메시지 번역?
     private fun loginCallback(): (OAuthToken?, Throwable?) -> Unit = { token, error ->
-        if (error != null) {
-            val t = Toast.makeText(this, error.message, Toast.LENGTH_SHORT)
-            t.show()
-        }
+        if (error != null) Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show()
         else if (token != null) loginOrSignUp()
     }
 
     // 먹자팟 가입/로그인 처리
     private fun loginOrSignUp() {
         UserApiClient.instance.me { user, error ->
-            if (error != null) {
-                val t = Toast.makeText(this, error.message, Toast.LENGTH_SHORT)
-                t.show()
-            } else if (user != null) {
+            if (error != null) Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show()
+            else if (user != null) {
                 // API를 통해 가입여부 확인
                 // val accountCheck = GlobalApplication.INSTANCE.api.readUserWithSnsId(user.id.toString())
                 // 테스트를 위해 임의의 값
-                // val snsId: Long = 3513532
-                val snsId: Long = 3513531
+                val snsId: Long = 3513532
+                // val snsId: Long = 3513531
                 val readUserWithSnsIdCall = GlobalApplication.INSTANCE.api.readUserWithSnsId(snsId.toString())
                 readUserWithSnsIdCall.enqueue(
                     object : Callback<User> {
@@ -69,7 +67,8 @@ class LoginActivity : AppCompatActivity() {
 
                                 GlobalApplication.INSTANCE.id = uId
 
-                                // MainActivity로 넘어가기
+                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                startActivity(intent)
                             } else {
                                 Toast.makeText(GlobalApplication.INSTANCE, "Not signed in", Toast.LENGTH_SHORT).show()
                                 buildDialog(snsId).show()
@@ -92,17 +91,15 @@ class LoginActivity : AppCompatActivity() {
 
         builder.setTitle("회원가입")
         builder.setIcon(R.mipmap.ic_launcher)
-        builder.setView(layoutInflater.inflate(R.layout.signup_dialog, null))
+        builder.setView(layoutInflater.inflate(R.layout.dialog_signup, null))
 
         val listener = DialogInterface.OnClickListener { p0, _ ->
             val dialog = p0 as AlertDialog
-            val dialogNickname: EditText? = dialog.findViewById<EditText>(R.id.editText_nickname)
-            val dialogAccount: EditText? = dialog.findViewById<EditText>(R.id.editText_account)
+            val dialogNickname: EditText? = dialog.findViewById(R.id.et_signup_nickname)
+            val dialogAccount: EditText? = dialog.findViewById(R.id.et_signup_account)
 
             //여기에 입력받은 닉네임, 계좌를 변수에 저장하는 코드
             val user = PostUser(dialogNickname!!.text.toString(), dialogAccount!!.text.toString(), snsId)
-
-            Toast.makeText(this, user.toString(), Toast.LENGTH_SHORT).show()
 
             val createUserCall = GlobalApplication.INSTANCE.api.createUser(user)
             createUserCall.enqueue(
@@ -114,6 +111,8 @@ class LoginActivity : AppCompatActivity() {
                             GlobalApplication.INSTANCE.id = response.body()!!.u_id
 
                             // MainActivity로 넘어가기
+                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                            startActivity(intent)
                         }
                     }
 
