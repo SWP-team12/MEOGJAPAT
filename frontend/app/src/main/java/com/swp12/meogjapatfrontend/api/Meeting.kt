@@ -25,6 +25,12 @@ data class CreateMeeting(
         var ageGroup: Int = 0
 )
 
+data class UpdateMeeting(
+        var u_id: Int = 0,
+        var action: String = "",
+        var status: Int = 0,
+)
+
 @RequiresApi(Build.VERSION_CODES.O)
 data class MeetingDetail(
         var m_id: Int = 0,

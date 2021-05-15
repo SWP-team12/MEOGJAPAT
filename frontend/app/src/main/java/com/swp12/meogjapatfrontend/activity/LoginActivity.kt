@@ -31,6 +31,13 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        // 자동 로그인
+        if (GlobalApplication.INSTANCE.id.toInt() != 0) {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         // 카카오톡 설치시 앱으로, 미설치시 웹으로 연동 로그인
         btn_kakao_login.setOnClickListener {
             if (UserApiClient.instance.isKakaoTalkLoginAvailable(this)) {
@@ -62,13 +69,16 @@ class LoginActivity : AppCompatActivity() {
                     object : Callback<User> {
                         override fun onResponse(call: Call<User>, response: Response<User>) {
                             if (response.isSuccessful) {
-                                val uId = response.body()!!.uId.toLong()
+                                val uId = response.body()!!.u_id.toLong()
                                 UserPreference().setUserId("id", uId)
+
+                                Log.d("Login", uId.toString())
 
                                 GlobalApplication.INSTANCE.id = uId
 
                                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                                 startActivity(intent)
+                                finish()
                             } else {
                                 Toast.makeText(GlobalApplication.INSTANCE, "Not signed in", Toast.LENGTH_SHORT).show()
                                 buildDialog(snsId).show()
@@ -112,7 +122,9 @@ class LoginActivity : AppCompatActivity() {
 
                             // MainActivity로 넘어가기
                             val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK + Intent.FLAG_ACTIVITY_TASK_ON_HOME
                             startActivity(intent)
+                            finish()
                         }
                     }
 

@@ -34,7 +34,5 @@ class GlobalApplication: Application() {
         // Kakao SDK 초기화
         KakaoSdk.init(this, getString(R.string.native_app_key))
         id = UserPreference().getUserId("id")
-
-
     }
 }

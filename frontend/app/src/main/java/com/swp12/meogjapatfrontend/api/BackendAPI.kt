@@ -16,15 +16,39 @@ interface BackendAPI {
     // 5. 어떤 형태의 응답을 받을 것인가?
     // 등에 따라 인터페이스를 선언해야 한다.
 
+    // 생성된 사용자의 u_id 반환 필수! 백엔드에 요청할 것!
+    @POST("/api/user")
+    fun createUser(@Body user: PostUser) : Call<UserId>
+
     @GET("/api/user/{u_id}")
-    fun getUser(@Path("u_id") id: Long) : Call<User>
+    fun readUser(@Path("u_id") id: Int) : Call<User>
 
     @GET("/api/user")
     fun readUserWithSnsId(@Query("sns_id") id: String?) : Call<User>
 
-    // 생성된 사용자의 u_id 반환 필수! 백엔드에 요청할 것!
-    @POST("/api/user")
-    fun createUser(@Body user: PostUser) : Call<UserId>
+    @PUT("/api/user")
+    fun updateUser(@Path("u_id") id: Int)
+
+    @POST("/api/meeting")
+    fun createMeeting(@Body meeting: CreateMeeting)
+
+    @GET("api/meeting")
+    fun readMeetingList() : Call<List<Meeting>>
+
+    @GET("api/meeting/{m_id}")
+    fun readMeetingDetail(@Path("m_id") id: Int) : Call<MeetingDetail>
+
+    @PUT("api/meeting/{m_id}")
+    fun updateMeeting(@Path("m_id") id: Int, @Body data: UpdateMeeting)
+
+    @DELETE("api/meeting/{m_id}")
+    fun deleteMeeting(@Path("m_id") id: Int)
+
+    @POST("api/notification")
+    fun createNotification(@Body notification: Notification)
+
+    @GET("api/notification")
+    fun readNotification(@Query("n_id") id: Int) : List<Notification>
 
     // 요청 선언부 종료
 

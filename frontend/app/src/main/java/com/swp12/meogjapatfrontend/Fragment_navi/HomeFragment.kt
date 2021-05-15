@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.swp12.meogjapatfrontend.R
 import com.swp12.meogjapatfrontend.activity.CreateActivity
@@ -52,6 +53,13 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
+        // Setting SwipeRefreshLayout
+        val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.home_swipe_refresh)
+        swipeRefreshLayout.setOnRefreshListener {
+            refresh()
+            swipeRefreshLayout.isRefreshing = false
+        }
+
         return view
     }
 
@@ -70,6 +78,6 @@ class HomeFragment : Fragment() {
     }
 
     fun filter() {
-
+        // filter
     }
 }

@@ -31,8 +31,8 @@ class DetailActivity : AppCompatActivity() {
         // --- 임시 데이터
         val data = MeetingDetail(meetingId,
             0, "찜닭", "이 세상 어딘가", LocalDateTime.now(),
-            false, 4, 2, 0,
-            14134, 345345, 0, 0)
+            false, 4, 2, 2,
+            3, 345345, 0, 0)
         // --- 임시 데이터
 
         initMeeting(data)

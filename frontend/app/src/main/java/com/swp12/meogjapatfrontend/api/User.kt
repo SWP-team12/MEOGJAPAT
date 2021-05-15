@@ -5,19 +5,19 @@ enum class AgeGroup {
 }
 
 data class User(
-        var uId: Number = 0,
+        var u_id: Number = 0,
         var nickname: String = "",
-        var uAge: AgeGroup = AgeGroup.NONE,
+        var u_age: AgeGroup = AgeGroup.NONE,
         var account: String = "",
-        var snsId: Number = 0,
-        var runCount: Number = 0,
-        var rudeCount: Number = 0
+        var sns_id: Number = 0,
+        var run_count: Number = 0,
+        var rude_count: Number = 0
 )
 
 data class PostUser(
         var nickname: String = "",
         var account: String = "",
-        var snsId: Long = 0
+        var sns_id: Long = 0
 )
 
 data class UserId(
