@@ -5,12 +5,7 @@
 
     <!--상단바 타이틀-->
     <string name="title_main">MEOGJAPAT</string>
-    <string name="title_edit">작성한 모임 목록</string>
-    <string name="title_participation">참여한 모임 목록</string>
-    <string name="title_notification">알림함</string>
-    <string name="title_profile">Profile</string>
 
-    <string name="test">Test</string>
     <string name="textView">textView</string>
     <string name="app_name">MeogjapatFrontend</string>
     <string name="logo">logo</string>
@@ -19,10 +14,8 @@
     <string name="nickname">닉네임</string>
     <string name="age_group">연령대</string>
     <string name="account">계좌</string>
-    <string name="sign_up">회원가입</string>
     <string name="payment">결제</string>
     <string name="report">신고</string>
-    <string name="button_navi">네비게이션 버튼</string>
     <string name="participant1">참여자1</string>
     <string name="participant2">참여자2</string>
     <string name="participant3">참여자3</string>
@@ -31,10 +24,8 @@
     <string name="area">지역</string>
     <string name="fellowship">친목유무</string>
     <string name="ok">확인</string>
-    <string name="yes">YES</string>
-    <string name="no">NO</string>
-    <string name="all">ALL</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
 
 </resources>

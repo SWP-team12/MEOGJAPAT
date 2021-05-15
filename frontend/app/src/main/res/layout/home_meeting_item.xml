@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/parent_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
 <androidx.cardview.widget.CardView
     android:id="@+id/cv_meeting"
     android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardUseCompatPadding="true"
     app:cardElevation="10dp"
@@ -24,7 +18,7 @@
         android:layout_height="match_parent"
         android:background="?attr/selectableItemBackground"
         android:orientation="horizontal"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:padding="10dp">
 
 
@@ -40,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:padding="10dp">
 
             <TextView
@@ -73,7 +67,7 @@
                     android:gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
+                    android:layout_marginStart="50dp"
                     android:text="모임 시간"
                     android:textColor="#393737"
                     android:textSize="17sp" />
@@ -99,16 +93,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:text="목표 인원"
-                    android:layout_marginLeft="50dp"
+                    android:layout_marginStart="50dp"
                     android:textColor="#393737"
                     android:textSize="17sp" />
 
             </LinearLayout>
-
         </LinearLayout>
-
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
-
-</RelativeLayout>

@@ -7,13 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity">
 
-    <androidx.viewpager.widget.ViewPager
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/main_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/animated_bottom_bar"
         android:background="@color/white">
-    </androidx.viewpager.widget.ViewPager>
+    </androidx.viewpager2.widget.ViewPager2>
 
     <nl.joery.animatedbottombar.AnimatedBottomBar
         android:id="@+id/animated_bottom_bar"

@@ -30,20 +30,18 @@
             android:id="@+id/btn_filtering"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             android:layout_marginEnd="20dp"
             android:background="#00FFFFFF"
             android:src="@drawable/ic_search" />
 
     </androidx.appcompat.widget.Toolbar>
 
-    <!--CardView와 연동필요-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_meeting_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp"/>
-
+        android:layout_marginTop="50dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_main"
@@ -51,13 +49,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:clickable="true"
+        android:focusable="true"
         android:layout_margin="16dip"
         android:src="@drawable/ic_add"
         app:backgroundTint="#203458"
         app:fabSize="normal"
         android:contentDescription="TODO" />
-
-
-
 
 </FrameLayout>

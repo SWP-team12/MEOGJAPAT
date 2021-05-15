@@ -1,11 +1,16 @@
-package com.swp12.meogjapatfrontend.Fragment_navi
+package com.swp12.meogjapatfrontend.fragment
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
+import androidx.annotation.RequiresApi
 import com.swp12.meogjapatfrontend.R
+import com.swp12.meogjapatfrontend.activity.CreateActivity
+import java.time.LocalDate
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -14,10 +19,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [PrtListFragment.newInstance] factory method to
+ * Use the [CreateDateFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class PrtListFragment : Fragment() {
+class CreateDateFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -35,7 +40,20 @@ class PrtListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_prt_list, container, false)
+        return inflater.inflate(R.layout.fragment_create_date, container, false)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    override fun onDestroyView() {
+        val datePicker = requireView().findViewById<DatePicker>(R.id.meeting_date_picker)
+
+        val date = LocalDate.of(datePicker.year, datePicker.month, datePicker.dayOfMonth)
+
+        val main = activity as CreateActivity
+
+        main.meeting.date = date
+
+        super.onDestroyView()
     }
 
     companion object {
@@ -45,12 +63,12 @@ class PrtListFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment PrtFragment.
+         * @return A new instance of fragment CreateDateFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            PrtListFragment().apply {
+            CreateDateFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

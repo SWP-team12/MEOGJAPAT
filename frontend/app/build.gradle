@@ -25,8 +25,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility kotlin_version
-        targetCompatibility kotlin_version
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
         jvmTarget = '1.8'
@@ -47,6 +47,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'// 추가
     implementation 'com.android.support:design:30.0.0'// UI 디자인 참고용
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
@@ -65,4 +66,8 @@ dependencies {
 
     //UI 디자인 참고를 위해 추가
     implementation 'nl.joery.animatedbottombar:library:1.0.9'
+
+    // 모임 세부 정보 액티비티 디자인을 위해 추가
+    implementation 'com.github.badoualy:stepper-indicator:1.0.7'
+    implementation 'com.mikhaellopez:circularprogressbar:3.0.3'
 }
