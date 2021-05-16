@@ -9,9 +9,9 @@ import java.time.LocalTime
 data class Meeting(
         var m_id: Int,
         var menu: String,
-        var time: LocalDateTime,
+        var amity: Boolean,
+        var area: Int,
         var age: Int,
-        var number: Int
 )
 
 @RequiresApi(Build.VERSION_CODES.O)

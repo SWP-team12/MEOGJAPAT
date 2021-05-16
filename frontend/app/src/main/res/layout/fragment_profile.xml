@@ -5,96 +5,92 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment_navi.ProfileFragment">
+    tools:context=".Fragment_navi.ProfileFragment"
+    android:background="#white">
 
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="50dp"
-        android:text="@string/nickname"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/logo_start"
+        android:background="#203458"/>
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="150dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="330dp"
         android:text="@string/age_group"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:textColor="#3A3A3A"
+        android:textSize="18sp"/>
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="250dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="440dp"
         android:text="@string/account"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:textColor="#3A3A3A"
+        android:textSize="18sp"/>
 
     <TextView
         android:id="@+id/tv_nickname"
-        android:layout_width="250dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="50dp"
-        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="260dp"
+        android:text="tv_닉네임"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv_age"
-        android:layout_width="250dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="150dp"
-        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="360dp"
+        android:text="tv_연령대"
         android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/tv_account"
-        android:layout_width="250dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="250dp"
-        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="470dp"
+        android:text="tv_계좌"
         android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/btn_edit"
-        android:layout_width="120dp"
+        android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="600dp"
-        android:background="#4169E1"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="610dp"
+        android:background="#FFFFFF"
         android:text="@string/edit"
-        android:textColor="#FFFFFF"
+        android:textColor="#203458"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn_logout"
-        android:layout_width="120dp"
+        android:layout_width="100dp"
         android:layout_height="40dp"
         android:layout_marginStart="220dp"
-        android:layout_marginTop="600dp"
-        android:background="#4169E1"
+        android:layout_marginTop="610dp"
+        android:background="#FFFFFF"
         android:text="@string/logout"
-        android:textColor="#FFFFFF"
+        android:textColor="#203458"
         android:textStyle="bold" />
+
 
 
 

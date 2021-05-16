@@ -1,21 +1,29 @@
 package com.swp12.meogjapatfrontend.dialog
 
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.EditText
 import android.widget.Spinner
+import androidx.fragment.app.DialogFragment
+import com.swp12.meogjapatfrontend.Fragment_navi.HomeFragment
 import com.swp12.meogjapatfrontend.R
+import java.lang.ClassCastException
 
-class FilteringFragment : Fragment() {
+class FilteringFragment : DialogFragment(), View.OnClickListener {
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_filtering, container, false)
+
+        val bundle = arguments
+
 
         val spinner_area = view.findViewById<Spinner>(R.id.filtering_area)
         val spinner_age_group = view.findViewById<Spinner>(R.id.filtering_age_group)
@@ -31,6 +39,10 @@ class FilteringFragment : Fragment() {
         spinner_age_group.adapter = arratAdapter_age_group
 
         return view
+    }
+
+    override fun onClick(v: View?) {
+        dismiss()
     }
 
 }

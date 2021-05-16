@@ -23,12 +23,9 @@ class MeetingAdapter(private val meetingList: ArrayList<Meeting>) : RecyclerView
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.menu.text = meetingList[position].menu
-        val date = DateTimeFormatter.ofPattern("MM월 dd일")
-        holder.date.text = meetingList[position].time.toLocalDate().format(date)
-        val time = DateTimeFormatter.ofPattern("HH시 mm분")
-        holder.time.text = meetingList[position].time.toLocalTime().format(time)
+        holder.amity.text = meetingList[position].amity.toString()
+        holder.area.text = meetingList[position].area.toString()
         holder.age.text = meetingList[position].age.toString()
-        holder.number.text = meetingList[position].number.toString()
 
         holder.itemView.setOnClickListener {
             itemClickListener.onClick(it, position)
@@ -40,11 +37,11 @@ class MeetingAdapter(private val meetingList: ArrayList<Meeting>) : RecyclerView
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        // 메뉴, 친목, 지역, 연령대로 수정
         val menu: TextView = view.findViewById(R.id.tv_meeting_menu)
-        val date: TextView = view.findViewById(R.id.tv_meeting_date)
-        val time: TextView = view.findViewById(R.id.tv_meeting_time)
+        val amity: TextView = view.findViewById(R.id.tv_meeting_amity)
+        val area: TextView = view.findViewById(R.id.tv_meeting_area)
         val age: TextView = view.findViewById(R.id.tv_meeting_age)
-        val number: TextView = view.findViewById(R.id.tv_meeting_num)
     }
 
     interface ItemClickListener {

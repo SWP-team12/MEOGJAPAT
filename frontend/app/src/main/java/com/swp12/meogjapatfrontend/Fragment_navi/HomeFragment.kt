@@ -18,10 +18,10 @@ import com.swp12.meogjapatfrontend.activity.CreateActivity
 import com.swp12.meogjapatfrontend.activity.DetailActivity
 import com.swp12.meogjapatfrontend.adapter.MeetingAdapter
 import com.swp12.meogjapatfrontend.api.Meeting
-import java.time.LocalDateTime
 
 
 class HomeFragment : Fragment() {
+
     private val meetingList: ArrayList<Meeting> = ArrayList()
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -71,13 +71,14 @@ class HomeFragment : Fragment() {
         // Get data from Backend
 
         // 임시 데이터
-        val meeting1 = Meeting(1, "찜닭", LocalDateTime.now(), 3, 4)
+        val meeting1 = Meeting(1, "찜닭", false, 3, 30)
         meetingList.add(meeting1)
-        val meeting2 = Meeting(2, "양꼬치", LocalDateTime.now(), 2, 3)
+        val meeting2 = Meeting(2, "양꼬치", false, 2, 20)
         meetingList.add(meeting2)
     }
 
     fun filter() {
         // filter
     }
+
 }

@@ -24,8 +24,8 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_gravity="center_vertical"
             app:srcCompat="@drawable/logo_mini" />
 
@@ -37,16 +37,32 @@
             android:layout_marginStart="10dp"
             android:padding="10dp">
 
-            <TextView
-                android:id="@+id/tv_meeting_menu"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="모임 메뉴"
-                android:textColor="#050505"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal">
 
+                <TextView
+                    android:id="@+id/tv_meeting_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="모임 메뉴"
+                    android:textColor="#050505"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_meeting_area"
+                    android:gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="90dp"
+                    android:text="모임지역"
+                    android:textColor="#393737"
+                    android:textSize="17sp" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -54,21 +70,21 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_meeting_date"
+                    android:id="@+id/textView10"
                     android:gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="모임 날짜"
+                    android:text="친목 여부 : "
                     android:textColor="#393737"
                     android:textSize="17sp" />
 
                 <TextView
-                    android:id="@+id/tv_meeting_time"
+                    android:id="@+id/tv_meeting_amity"
                     android:gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:text="모임 시간"
+                    android:layout_marginStart="5dp"
+                    android:text="친목 여부"
                     android:textColor="#393737"
                     android:textSize="17sp" />
             </LinearLayout>
@@ -79,21 +95,21 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_meeting_age"
+                    android:id="@+id/textView11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:text="연령 제한"
+                    android:text="연령 제한 : "
                     android:textColor="#393737"
                     android:textSize="17sp" />
 
                 <TextView
-                    android:id="@+id/tv_meeting_num"
+                    android:id="@+id/tv_meeting_age"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:text="목표 인원"
-                    android:layout_marginStart="50dp"
+                    android:text="연령대"
+                    android:layout_marginStart="5dp"
                     android:textColor="#393737"
                     android:textSize="17sp" />
 

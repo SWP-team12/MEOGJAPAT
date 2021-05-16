@@ -1,60 +1,62 @@
 package com.swp12.meogjapatfrontend.Fragment_navi
 
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.swp12.meogjapatfrontend.R
+import com.swp12.meogjapatfrontend.activity.DetailActivity
+import com.swp12.meogjapatfrontend.adapter.MeetingAdapter
+import com.swp12.meogjapatfrontend.api.Meeting
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [PrtListFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class PrtListFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private val meetingList: ArrayList<Meeting> = ArrayList()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_prt_list, container, false)
-    }
+    @RequiresApi(Build.VERSION_CODES.O)
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PrtFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PrtListFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+       val view = inflater.inflate(R.layout.fragment_prt_list, container, false)
+
+        // Initialize meeting list
+        refresh()
+
+        // Setting RecyclerView
+        val meetingRecyclerView = view.findViewById<RecyclerView>(R.id.rv_meeting_list)
+        meetingRecyclerView.layoutManager = LinearLayoutManager(activity)
+        val meetingAdapter = MeetingAdapter(meetingList)
+        meetingAdapter.setItemClickListener(
+            object : MeetingAdapter.ItemClickListener {
+                override fun onClick(view: View, position: Int) {
+                    val intent = Intent(activity, DetailActivity::class.java)
+                    intent.putExtra("meetingId", meetingList[position].m_id)
+                    startActivity(intent)
                 }
             }
+        )
+        meetingRecyclerView.adapter = meetingAdapter
+
+        return view
     }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun refresh() {
+        // Clear list
+        meetingList.clear()
+
+        // Get data from Backend
+
+        // 임시 데이터
+        val meeting1 = Meeting(1, "찜닭", false, 3, 30)
+        meetingList.add(meeting1)
+        val meeting2 = Meeting(2, "양꼬치", false, 2, 20)
+        meetingList.add(meeting2)
+    }
+
 }
