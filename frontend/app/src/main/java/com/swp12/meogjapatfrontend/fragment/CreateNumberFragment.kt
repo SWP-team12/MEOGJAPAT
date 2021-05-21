@@ -1,28 +1,29 @@
 package com.swp12.meogjapatfrontend.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ToggleButton
+import android.widget.NumberPicker
 import com.swp12.meogjapatfrontend.R
 import com.swp12.meogjapatfrontend.activity.CreateActivity
 
-class CreateAmityFragment : Fragment() {
+class CreateNumberFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_create_amity, container, false)
+        val view =  inflater.inflate(R.layout.fragment_create_number, container, false)
 
-        val button = view.findViewById<ToggleButton>(R.id.toggle_btn_amity)
+        val numberPicker = view.findViewById<NumberPicker>(R.id.meeting_number_picker)
+        numberPicker.minValue = 2
+        numberPicker.maxValue = 4
 
-        button.setOnCheckedChangeListener { _, isChecked ->
-            val main = activity as CreateActivity
-            main.meeting.amity = isChecked
-        }
+        val main = activity as CreateActivity
+        numberPicker.setOnValueChangedListener { _, _, newVal -> main.meeting.number = newVal }
 
         return view
     }

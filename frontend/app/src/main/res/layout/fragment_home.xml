@@ -8,7 +8,7 @@
     tools:context=".Fragment_navi.HomeFragment">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_main"
+        android:id="@+id/toolbar_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|top"
@@ -17,7 +17,7 @@
         android:theme="?attr/actionBarTheme">
 
         <TextView
-            android:id="@+id/title_profile"
+            android:id="@+id/title_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/title_main"

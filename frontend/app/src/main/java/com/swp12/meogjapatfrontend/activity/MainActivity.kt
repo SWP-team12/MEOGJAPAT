@@ -1,8 +1,11 @@
 package com.swp12.meogjapatfrontend.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.swp12.meogjapatfrontend.R
+import com.swp12.meogjapatfrontend.Refreshable
 import com.swp12.meogjapatfrontend.adapter.ViewPagerAdapter2
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*

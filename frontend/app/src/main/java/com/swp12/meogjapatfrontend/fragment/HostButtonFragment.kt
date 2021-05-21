@@ -1,16 +1,18 @@
 package com.swp12.meogjapatfrontend.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import com.swp12.meogjapatfrontend.GlobalApplication
 import com.swp12.meogjapatfrontend.R
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import kotlinx.android.synthetic.main.fragment_host_button.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 /**
  * A simple [Fragment] subclass.
@@ -18,15 +20,14 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class HostButtonFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var mId: Int = 0
+    private var status: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            mId = it.getInt("mId")
+            status = it.getInt("status")
         }
     }
 
@@ -38,22 +39,58 @@ class HostButtonFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_host_button, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        host_cancel.setOnClickListener {
+            val deleteMeetingCall = GlobalApplication.INSTANCE.api.deleteMeeting(mId)
+            deleteMeetingCall.enqueue(object : Callback<Unit> {
+                override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                    if (response.isSuccessful) {
+                        Log.d("Detail","Meeting successfully deleted!")
+                        Toast.makeText(activity, "Meeting successfully deleted!", Toast.LENGTH_SHORT).show()
+                        activity?.finish()
+                    } else {
+                        Log.d("Detail","Server Error - ${response.message()}")
+                        Toast.makeText(activity, "Server Error code ${response.code()}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<Unit>, t: Throwable) {
+                    Log.d("Detail","Retrofit Error - $t")
+                    Toast.makeText(activity, "Retrofit Error - $t", Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
+        host_confirm.setOnClickListener { Log.d("Host", "Confirm") }
+        host_end.setOnClickListener { Log.d("Host", "End") }
+
+        Log.d("Host", status.toString())
+
+        when (status) {
+            0 -> host_end.isEnabled = false
+            1 -> {
+                host_confirm.isEnabled = false
+                host_cancel.isEnabled = false
+            }
+        }
+    }
+
     companion object {
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
+         * @param status Parameter 1.
          * @return A new instance of fragment HostButtonFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(mId: Int, status: Int) =
             HostButtonFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putInt("mId", mId)
+                    putInt("status", status)
                 }
             }
     }

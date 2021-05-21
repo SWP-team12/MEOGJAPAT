@@ -1,44 +1,56 @@
 package com.swp12.meogjapatfrontend.Fragment_navi
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.Toast
+import com.swp12.meogjapatfrontend.GlobalApplication
 import com.swp12.meogjapatfrontend.R
+import com.swp12.meogjapatfrontend.api.Notification
+import kotlinx.android.synthetic.main.fragment_notification.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class NotificationFragment : Fragment() {
     private val notifications: ArrayList<String> = ArrayList()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        val view =  inflater.inflate(R.layout.fragment_notification, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
         // Get data from backend
+        val readNotificationCall = GlobalApplication.INSTANCE.api.readNotification(GlobalApplication.INSTANCE.id.toInt())
+        readNotificationCall.enqueue(object : Callback<List<Notification>> {
+            override fun onResponse(call: Call<List<Notification>>, response: Response<List<Notification>>) {
+                if (response.isSuccessful) {
+                    for (notification in response.body()!!.asReversed()) notifications.add(notification.message)
+                } else {
+                    Log.d("Notification", "Server Error - ${response.message()}")
+                    Toast.makeText(activity, "Server Error code ${response.code()}", Toast.LENGTH_SHORT).show()
+                }
+            }
 
-        // 임시 데이터
-        var mId = 1
-        var mStatus = "모집"
-        notifications.add("${mId}번 모임이 $mStatus 상태로 변경되었습니다.")
+            override fun onFailure(call: Call<List<Notification>>, t: Throwable) {
+                Log.d("Notification", "Retrofit Error - $t")
+                Toast.makeText(activity, "Retrofit Error - $t", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
 
-        mId = 2
-        mStatus = "시작"
-        notifications.add("${mId}번 모임이 $mStatus 상태로 변경되었습니다.")
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_notification, container, false)
+    }
 
-        mId = 3
-        mStatus = "종료"
-        notifications.add("${mId}번 모임이 $mStatus 상태로 변경되었습니다.")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        val listView = view.findViewById<ListView>(R.id.lv_notification)
         val arrayAdapter: ArrayAdapter<String> = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, notifications)
-
-        listView.adapter = arrayAdapter
-
-        return view
+        lv_notification.adapter = arrayAdapter
     }
 }

@@ -1,6 +1,7 @@
 package com.swp12.meogjapatfrontend.adapter
 
 import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,8 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.swp12.meogjapatfrontend.R
+import com.swp12.meogjapatfrontend.api.AREA
+import com.swp12.meogjapatfrontend.api.AgeGroup
 import com.swp12.meogjapatfrontend.api.Meeting
 import java.time.format.DateTimeFormatter
 
@@ -23,9 +26,11 @@ class MeetingAdapter(private val meetingList: ArrayList<Meeting>) : RecyclerView
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.menu.text = meetingList[position].menu
-        holder.amity.text = meetingList[position].amity.toString()
-        holder.area.text = meetingList[position].area.toString()
-        holder.age.text = meetingList[position].age.toString()
+        holder.area.text = AREA.getString(AREA.values()[meetingList[position].area])
+        holder.age.text = AgeGroup.getString(AgeGroup.values()[meetingList[position].m_age])
+
+        val amityText = if (meetingList[position].amity) "가능" else "불가"
+        holder.amity.text = amityText
 
         holder.itemView.setOnClickListener {
             itemClickListener.onClick(it, position)

@@ -1,16 +1,20 @@
 package com.swp12.meogjapatfrontend.fragment
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.swp12.meogjapatfrontend.R
 import com.swp12.meogjapatfrontend.activity.MeetingInfo
 import com.swp12.meogjapatfrontend.adapter.MeetingDetailAdapter
+import com.swp12.meogjapatfrontend.api.AgeGroup
+import java.time.format.DateTimeFormatter
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,6 +39,7 @@ class DetailInfoFragment : Fragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,22 +50,18 @@ class DetailInfoFragment : Fragment() {
         val meetingInfoData = requireArguments().getSerializable("meetingInfo") as MeetingInfo
 
         val infoList: ArrayList<String> = ArrayList()
+
+        val prtList = listOf(meetingInfoData.participantId1, meetingInfoData.participantId2, meetingInfoData.participantId3)
+        var participant = ""
+        for (index in prtList.indices) if (prtList[index] != 0) participant += "참여자 $index ID : ${prtList[index]}\n"
+        if (participant.isEmpty()) participant = "참여를 기다리고 있어요!"
+
+        // 실제 정보 채워넣기, 순서 지키기
         infoList.add(meetingInfoData.menu)
         infoList.add(meetingInfoData.place)
-        infoList.add(meetingInfoData.time.toString())
-
-        // 연령대 체크 필요, placeholder 사용
-        // infoList.add(Age Group Of Meeting)
-        infoList.add("20대")
-
+        infoList.add(meetingInfoData.time.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일\na hh시 mm분")))
+        infoList.add(AgeGroup.getString(AgeGroup.values()[meetingInfoData.age]))
         if (meetingInfoData.amity) infoList.add("허용") else infoList.add("금지")
-
-        var participant = ""
-
-        if (meetingInfoData.participantId1 != null) participant += "${meetingInfoData.participantId1}, "
-        if (meetingInfoData.participantId2 != null) participant += "${meetingInfoData.participantId2}, "
-        if (meetingInfoData.participantId3 != null) participant += "${meetingInfoData.participantId3}"
-
         infoList.add(participant)
 
         val viewPager = view.findViewById(R.id.meeting_viewpager) as ViewPager2
@@ -73,7 +74,7 @@ class DetailInfoFragment : Fragment() {
                 1 -> "장소"
                 2 -> "시간"
                 3 -> "연령대"
-                4 -> "친목 여부"
+                4 -> "친목"
                 5 -> "참여자 UID"
                 else -> ""
             }

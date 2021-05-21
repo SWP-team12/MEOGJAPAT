@@ -3,12 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment_navi.EditFragment">
+    tools:context=".Fragment_navi.MadeListFragment">
 
-    <!--CardView와 연동필요-->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_prt_meeting_list"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_made"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|top"
+        android:background="#203458"
+        android:minHeight="50dp"
+        android:theme="?attr/actionBarTheme">
+
+        <TextView
+            android:id="@+id/title_made"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내가 만든 모임"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_made_meeting_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp" />
 
 </FrameLayout>
