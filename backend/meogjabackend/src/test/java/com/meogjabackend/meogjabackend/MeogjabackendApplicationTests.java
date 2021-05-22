@@ -1,10 +1,10 @@
-package com.swp12.meogjapatbackend;
+package com.meogjabackend.meogjabackend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MeogjapatBackendApplicationTests {
+class MeogjabackendApplicationTests {
 
 	@Test
 	void contextLoads() {

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.meogjabackend.Meeting.Mapper.MeetingMapper">
+	<select id="selectMeetingList" resultType="com.meogjabackend.Meeting.DTO.MeetingDTO">
+		<![CDATA[
+			SELECT
+					m_id,
+					area,
+					menu,
+					place,
+					time,
+					amity,
+					m_number,
+					m_age,
+					status,
+					participant_2,
+					participant_3,
+					participant_4,
+					u_id
+			FROM
+					meeting
+			ORDER BY m_id DESC
+		]]>
+	</select>
+	
+	<insert id="insertMeeting" parameterType="com.meogjabackend.Meeting.DTO.MeetingDTO">
+		<![CDATA[
+			INSERT INTO meeting
+			(
+					area,
+					menu,
+					place,
+					time,
+					amity,
+					m_number,
+					m_age,
+					u_id
+			)
+			VALUES
+			(
+					#{area},
+					#{menu},
+					#{place},
+					#{time},
+					#{amity},
+					#{m_number},
+					#{m_age},
+					#{u_id}
+			);
+		]]>
+	</insert>
+	
+	<select id="selectMeetingDetail" parameterType="int" resultType="com.meogjabackend.Meeting.DTO.MeetingDTO">
+		<![CDATA[
+			SELECT 
+					m_id,
+					area,
+					menu,
+					place,
+					time,
+					amity,
+					m_number,
+					m_age,
+					status,
+					participant_2,
+					participant_3,
+					participant_4,
+					u_id
+			FROM
+					meeting
+			WHERE
+					m_id = ${m_id}
+		]]>
+	</select>
+	
+	<update id="startMeeting" parameterType="com.meogjabackend.Meeting.DTO.MeetingDTO">
+        <![CDATA[
+        	UPDATE 
+        		meeting 
+        	SET 
+        		status = ${status}
+        	WHERE
+        		m_id=#{m_id}
+        ]]>
+    </update>
+    
+	<update id="joinMeeting2" parameterType="com.meogjabackend.Meeting.DTO.MeetingDTO">
+        <![CDATA[
+        	UPDATE 
+        		meeting 
+        	SET 
+        		participant_2=${participant_2}        	
+        	WHERE
+        		m_id=#{m_id}
+        ]]>
+    </update>
+    
+    <update id="joinMeeting3" parameterType="com.meogjabackend.Meeting.DTO.MeetingDTO">
+        <![CDATA[
+        	UPDATE 
+        		meeting 
+        	SET 
+        		participant_3=${participant_3}        	
+        	WHERE
+        		m_id=#{m_id}
+        ]]>
+    </update>
+    
+    <update id="joinMeeting4" parameterType="com.meogjabackend.Meeting.DTO.MeetingDTO">
+        <![CDATA[
+        	UPDATE 
+        		meeting 
+        	SET 
+        		participant_4=${participant_4}        	
+        	WHERE
+        		m_id=#{m_id}
+        ]]>
+    </update>
+	
+	<update id="deleteMeeting" parameterType="int">
+		<![CDATA[
+			DELETE FROM 
+				meeting
+			WHERE
+				m_id=#{m_id};
+		]]>
+	</update>
+
+</mapper>
