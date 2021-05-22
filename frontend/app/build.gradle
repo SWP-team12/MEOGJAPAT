@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
 }
 
 android {
@@ -9,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.swp12.meogjapatfrontend"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -39,7 +40,34 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.+'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    implementation 'androidx.cardview:cardview:1.0.0'//cardview 추가
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'// 추가
+    implementation 'com.android.support:design:30.0.0'// UI 디자인 참고용
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    // 카카오 로그인 api를 위해 추가
+    implementation "com.kakao.sdk:v2-user:2.4.2" // 카카오 로그인
+    implementation "com.kakao.sdk:v2-talk:2.4.2" // 친구, 메시지(카카오톡)
+    implementation "com.kakao.sdk:v2-story:2.4.2" // 카카오스토리
+    implementation "com.kakao.sdk:v2-link:2.4.2" // 메시지(카카오링크)
+    implementation "com.kakao.sdk:v2-navi:2.4.2" // 카카오내비
+
+    // 백엔드와의 API 통신을 위해 추가
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+
+    //UI 디자인 참고를 위해 추가
+    implementation 'nl.joery.animatedbottombar:library:1.0.9'
+
+    // 모임 세부 정보 액티비티 디자인을 위해 추가
+    implementation 'com.github.badoualy:stepper-indicator:1.0.7'
+    implementation 'com.mikhaellopez:circularprogressbar:3.0.3'
 }

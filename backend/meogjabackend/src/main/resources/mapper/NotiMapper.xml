@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.meogjabackend.Noti.DAO.NotiDAO">
+ 
+  <!-- 알림생성 -->	
+  <select id="makenoti" parameterType="com.meogjabackend.Noti.DTO.NotiDTO"
+	resultType="com.meogjabackend.Noti.DTO.NotiDTO">
+															
+  	insert into notifications(u_id, m_id, message) values( #{u_id}, #{m_id}, #{message}  )
+  	
+  </select>
+  
+  
+  <!-- 알림목록  -->	
+  <select id="shownoti" parameterType="com.meogjabackend.Noti.DTO.NotiDTO"
+	resultType="com.meogjabackend.Noti.DTO.NotiDTO">
+															
+  	SELECT * FROM notifications
+  	where u_id=#{u_id}
+  	
+  </select>
+ 
+ 
+ </mapper>

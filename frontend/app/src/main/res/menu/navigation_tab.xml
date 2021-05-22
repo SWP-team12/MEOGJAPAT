@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/navi_home"
+        android:title="Home"
+        android:icon="@drawable/ic_home" />
+
+    <item android:id="@+id/navi_made_meeting"
+        android:title="Made"
+        android:icon="@drawable/ic_made_meeting" />
+
+    <item android:id="@+id/navi_prt_meeting"
+        android:title="Participate"
+        android:icon="@drawable/ic_prt_meeting" />
+
+    <item android:id="@+id/navi_notification"
+        android:title="Notice"
+        android:icon="@drawable/ic_notification" />
+
+    <item android:id="@+id/navi_profile"
+        android:title="Profile"
+        android:icon="@drawable/ic_profile" />
+
+</menu>
