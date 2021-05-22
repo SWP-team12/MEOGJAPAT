@@ -48,13 +48,13 @@ interface BackendAPI {
     fun readMeetingDetail(@Path("m_id") id: Int) : Call<MeetingDetail>
 
     @PUT("/meeting/{m_id}")
-    fun updateMeeting(@Path("m_id") id: Int, @Body data: UpdateMeeting)
+    fun updateMeeting(@Path("m_id") id: Int, @Body data: UpdateMeeting) : Call<Unit>
 
     @DELETE("/meeting/{m_id}")
     fun deleteMeeting(@Path("m_id") id: Int) : Call<Unit>
 
     @POST("/notification")
-    fun createNotification(@Body notification: Notification)
+    fun createNotification(@Body notification: CreateNotification) : Call<Unit>
 
     @GET("/notification")
     fun readNotification(@Query("u_id") id: Int) : Call<List<Notification>>

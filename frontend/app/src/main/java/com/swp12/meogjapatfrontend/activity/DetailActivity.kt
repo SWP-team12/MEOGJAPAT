@@ -1,16 +1,16 @@
 package com.swp12.meogjapatfrontend.activity
 
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.swp12.meogjapatfrontend.GlobalApplication
 import com.swp12.meogjapatfrontend.R
+import com.swp12.meogjapatfrontend.Refreshable
 import com.swp12.meogjapatfrontend.api.MeetingDetail
+import com.swp12.meogjapatfrontend.dialog.PaymentDialog
 import com.swp12.meogjapatfrontend.fragment.DetailIndicatorFragment
 import com.swp12.meogjapatfrontend.fragment.DetailInfoFragment
 import com.swp12.meogjapatfrontend.fragment.HostButtonFragment
@@ -21,8 +21,7 @@ import retrofit2.Response
 import java.io.Serializable
 import java.time.LocalDateTime
 
-@RequiresApi(Build.VERSION_CODES.O)
-class DetailActivity : AppCompatActivity() {
+class DetailActivity : AppCompatActivity(), Refreshable {
     private lateinit var data: MeetingDetail
     private var indicatorBundle: Bundle? = null
     private var detailInfoBundle: Bundle? = null
@@ -33,29 +32,7 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-        val meetingId = intent.getIntExtra("meetingId", 0)
-
-        // Get data from Backend
-        val readMeetingDetailCall = GlobalApplication.INSTANCE.api.readMeetingDetail(meetingId)
-        readMeetingDetailCall.enqueue(object : Callback<MeetingDetail> {
-            override fun onResponse(call: Call<MeetingDetail>, response: Response<MeetingDetail>) {
-                if (response.isSuccessful) {
-                    data = response.body()!!
-                    Log.d("Detail", data.toString())
-                    setMeeting(data)
-                    setContent()
-                }
-                else {
-                    Log.d("Detail","Server Error - ${response.message()}")
-                    Toast.makeText(this@DetailActivity, "Server Error code ${response.code()}", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onFailure(call: Call<MeetingDetail>, t: Throwable) {
-                Log.d("Detail","Retrofit Error - $t")
-                Toast.makeText(this@DetailActivity, "Retrofit Error - $t", Toast.LENGTH_SHORT).show()
-            }
-        })
+        refresh()
     }
 
     override fun onAttachFragment(fragment: Fragment) {
@@ -73,15 +50,15 @@ class DetailActivity : AppCompatActivity() {
         supportFragmentManager.commit {
             val indicatorFragment = DetailIndicatorFragment()
             indicatorFragment.arguments = indicatorBundle
-            add(R.id.meeting_indicator, indicatorFragment, "Indicator")
+            replace(R.id.meeting_indicator, indicatorFragment, "Indicator")
 
             val detailInfoFragment = DetailInfoFragment()
             detailInfoFragment.arguments = detailInfoBundle
-            add(R.id.meeting_info, detailInfoFragment)
+            replace(R.id.meeting_info, detailInfoFragment)
 
             if (GlobalApplication.INSTANCE.id.toInt() == data.u_id)
-                add(R.id.meeting_button_group, HostButtonFragment())
-            else add(R.id.meeting_button_group, ParticipateButtonFragment())
+                replace(R.id.meeting_button_group, HostButtonFragment())
+            else replace(R.id.meeting_button_group, ParticipateButtonFragment())
         }
     }
 
@@ -110,11 +87,49 @@ class DetailActivity : AppCompatActivity() {
         hostBundle = Bundle().apply {
             putInt("mId", data.m_id)
             putInt("status", data.status)
+            putInt("prt2", data.participant_2)
+            putInt("prt3", data.participant_3)
+            putInt("prt4", data.participant_4)
         }
 
         prtBundle = Bundle().apply {
-
+            putInt("mId", data.m_id)
+            putInt("status", data.status)
+            putInt("prt2", data.participant_2)
+            putInt("prt3", data.participant_3)
+            putInt("prt4", data.participant_4)
         }
+    }
+
+    override fun refresh() {
+        val meetingId = intent.getIntExtra("meetingId", 0)
+
+        // Get data from Backend
+        val readMeetingDetailCall = GlobalApplication.INSTANCE.api.readMeetingDetail(meetingId)
+        readMeetingDetailCall.enqueue(object : Callback<MeetingDetail> {
+            override fun onResponse(call: Call<MeetingDetail>, response: Response<MeetingDetail>) {
+                if (response.isSuccessful) {
+                    data = response.body()!!
+                    setMeeting(data)
+                    setContent()
+
+                    val prtIdList = ArrayList<Int>()
+                    prtIdList.addAll(listOf(data.u_id, data.participant_2, data.participant_3, data.participant_4))
+                    prtIdList.remove(GlobalApplication.INSTANCE.id.toInt())
+
+                    if (data.status == 1) PaymentDialog.newInstance(data.u_id, prtIdList).show(supportFragmentManager, "Payment")
+                }
+                else {
+                    Log.d("Detail","Server Error - ${response.message()}")
+                    Toast.makeText(this@DetailActivity, "Server Error code ${response.code()}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<MeetingDetail>, t: Throwable) {
+                Log.d("Detail","Retrofit Error - $t")
+                Toast.makeText(this@DetailActivity, "Retrofit Error - $t", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }
 

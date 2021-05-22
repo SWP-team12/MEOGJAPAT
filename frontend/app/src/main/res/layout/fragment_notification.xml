@@ -26,11 +26,18 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <ListView
-        android:id="@+id/lv_notification"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/noti_swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
-        android:background="#FFFFFF" />
+        android:layout_marginTop="50dp">
+
+        <ListView
+            android:id="@+id/lv_notification"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </FrameLayout>

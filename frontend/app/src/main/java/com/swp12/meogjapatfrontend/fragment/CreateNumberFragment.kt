@@ -1,7 +1,6 @@
 package com.swp12.meogjapatfrontend.fragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -23,7 +22,7 @@ class CreateNumberFragment : Fragment() {
         numberPicker.maxValue = 4
 
         val main = activity as CreateActivity
-        numberPicker.setOnValueChangedListener { _, _, newVal -> main.meeting.number = newVal }
+        numberPicker.setOnValueChangedListener { _, _, newVal -> main.meeting.m_number = newVal }
 
         return view
     }

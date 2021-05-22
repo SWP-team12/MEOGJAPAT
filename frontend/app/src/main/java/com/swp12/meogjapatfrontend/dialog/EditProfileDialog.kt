@@ -79,7 +79,7 @@ class EditProfileDialog : DialogFragment() {
 
             val updateUserCall = GlobalApplication.INSTANCE.api.updateUser(
                 GlobalApplication.INSTANCE.id.toInt(),
-                UpdateUser(newNickname, newAccount, "change")
+                UpdateUser("change", newNickname, newAccount)
             )
 
             updateUserCall.enqueue(UpdateUserCallback(mContext!!))

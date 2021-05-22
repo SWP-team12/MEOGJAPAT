@@ -1,6 +1,8 @@
 package com.swp12.meogjapatfrontend
 
 import android.app.Application
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.kakao.sdk.common.KakaoSdk
 import com.swp12.meogjapatfrontend.api.BackendAPI
 
@@ -26,6 +28,7 @@ class GlobalApplication: Application() {
     var id: Long = 0
 
     // REST API 사용 준비
+    @RequiresApi(Build.VERSION_CODES.O)
     val api: BackendAPI = BackendAPI.create()
 
     override fun onCreate() {

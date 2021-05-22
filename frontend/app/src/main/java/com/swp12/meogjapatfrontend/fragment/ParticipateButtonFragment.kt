@@ -1,60 +1,107 @@
 package com.swp12.meogjapatfrontend.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.Toast
+import com.swp12.meogjapatfrontend.GlobalApplication
 import com.swp12.meogjapatfrontend.R
+import com.swp12.meogjapatfrontend.activity.DetailActivity
+import com.swp12.meogjapatfrontend.api.UpdateMeeting
+import kotlinx.android.synthetic.main.fragment_participate_button.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ParticipateButtonFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ParticipateButtonFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var mId: Int = 0
+    private var status: Int = 0
+    private var prt2: Int = 0
+    private var prt3: Int = 0
+    private var prt4: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            mId = it.getInt("mId")
+            status = it.getInt("status")
+            prt2 = it.getInt("prt2")
+            prt3 = it.getInt("prt3")
+            prt4 = it.getInt("prt4")
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_participate_button, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ParticipateButtonFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ParticipateButtonFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        participant_confirm.setOnClickListener {
+            val updateMeeting = UpdateMeeting(GlobalApplication.INSTANCE.id.toInt(), "join")
+            val updateMeetingCall = GlobalApplication.INSTANCE.api.updateMeeting(mId, updateMeeting)
+            updateMeetingCall.enqueue(object : Callback<Unit> {
+                override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                    if (response.isSuccessful) {
+                        Log.d("Detail","Successfully participated to meeting!")
+                        Toast.makeText(activity, "Successfully participated to meeting!", Toast.LENGTH_SHORT).show()
+
+                        val detail = activity as DetailActivity
+                        detail.refresh()
+                    } else {
+                        Log.d("Detail","Server Error - ${response.message()}")
+                        Toast.makeText(activity, "Server Error code ${response.code()}", Toast.LENGTH_SHORT).show()
+                    }
                 }
-            }
+
+                override fun onFailure(call: Call<Unit>, t: Throwable) {
+                    Log.d("Detail","Retrofit Error - $t")
+                    Toast.makeText(activity, "Retrofit Error - $t", Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
+
+        participant_cancel.setOnClickListener {
+            val updateMeeting = UpdateMeeting(GlobalApplication.INSTANCE.id.toInt(), "cancel")
+            val updateMeetingCall = GlobalApplication.INSTANCE.api.updateMeeting(mId, updateMeeting)
+            updateMeetingCall.enqueue(object : Callback<Unit> {
+                override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                    if (response.isSuccessful) {
+                        Log.d("Detail","Successfully canceled participation!")
+                        Toast.makeText(activity, "Successfully canceled participation!", Toast.LENGTH_SHORT).show()
+
+                        val detail = activity as DetailActivity
+                        detail.refresh()
+                    } else {
+                        Log.d("Detail","Server Error - ${response.message()}")
+                        Toast.makeText(activity, "Server Error code ${response.code()}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<Unit>, t: Throwable) {
+                    Log.d("Detail","Retrofit Error - $t")
+                    Toast.makeText(activity, "Retrofit Error - $t", Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
+
+        setView(view)
+    }
+
+    private fun setView(view: View) {
+        val prtList = listOf(prt2, prt3, prt4)
+        if (prtList.any { it == GlobalApplication.INSTANCE.id.toInt() }) view.findViewById<Button>(R.id.participant_confirm).isEnabled = false
+        else view.findViewById<Button>(R.id.participant_cancel).isEnabled = false
+
+        if (status != 0) {
+            view.findViewById<Button>(R.id.participant_confirm).isEnabled = false
+            view.findViewById<Button>(R.id.participant_cancel).isEnabled = false
+        }
     }
 }

@@ -52,5 +52,10 @@ class NotificationFragment : Fragment() {
 
         val arrayAdapter: ArrayAdapter<String> = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, notifications)
         lv_notification.adapter = arrayAdapter
+
+        noti_swipe_refresh.setOnRefreshListener {
+            arrayAdapter.notifyDataSetChanged()
+            noti_swipe_refresh.isRefreshing = false
+        }
     }
 }

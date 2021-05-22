@@ -6,3 +6,9 @@ data class Notification(
     var m_id: Int = 0,
     var message: String = ""
 )
+
+data class CreateNotification(
+    var u_id: Int = 0,
+    var m_id: Int = 0,
+    var message: String = ""
+)

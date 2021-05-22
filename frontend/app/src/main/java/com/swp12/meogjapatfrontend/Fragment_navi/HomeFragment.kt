@@ -51,15 +51,13 @@ class HomeFragment : Fragment(), Refreshable {
 
         // RecyclerView
         rv_meeting_list.layoutManager = LinearLayoutManager(activity)
-        meetingAdapter.setItemClickListener(
-            object : MeetingAdapter.ItemClickListener {
+        meetingAdapter.setItemClickListener(object : MeetingAdapter.ItemClickListener {
                 override fun onClick(view: View, position: Int) {
                     val intent = Intent(activity, DetailActivity::class.java)
                     intent.putExtra("meetingId", meetingList[position].m_id)
                     startActivity(intent)
                 }
-            }
-        )
+            })
         rv_meeting_list.adapter = meetingAdapter
 
         // Meeting create Button

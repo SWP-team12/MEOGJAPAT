@@ -16,29 +16,7 @@ import com.swp12.meogjapatfrontend.adapter.MeetingDetailAdapter
 import com.swp12.meogjapatfrontend.api.AgeGroup
 import java.time.format.DateTimeFormatter
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [DetailInfoFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DetailInfoFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,7 +31,7 @@ class DetailInfoFragment : Fragment() {
 
         val prtList = listOf(meetingInfoData.participantId1, meetingInfoData.participantId2, meetingInfoData.participantId3)
         var participant = ""
-        for (index in prtList.indices) if (prtList[index] != 0) participant += "참여자 $index ID : ${prtList[index]}\n"
+        for (index in prtList.indices) if (prtList[index] != 0) participant += "참여자 ${index + 1} ID : ${prtList[index]}\n"
         if (participant.isEmpty()) participant = "참여를 기다리고 있어요!"
 
         // 실제 정보 채워넣기, 순서 지키기
@@ -81,25 +59,5 @@ class DetailInfoFragment : Fragment() {
         }.attach()
 
         return view
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DetailInfoFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DetailInfoFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }

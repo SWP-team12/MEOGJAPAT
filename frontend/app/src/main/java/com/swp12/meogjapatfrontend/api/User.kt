@@ -67,7 +67,9 @@ data class UserInfo(
 )
 
 data class UpdateUser(
+        var action: String,
         var nickname: String = "",
         var account: String = "",
-        var action: String
+        var run: Boolean = false,
+        var rude: Boolean = false
 )

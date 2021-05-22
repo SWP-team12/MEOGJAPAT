@@ -25,10 +25,6 @@ enum class AREA {
         }
 }
 
-enum class STATUS {
-        GATHER, EAT, PAY
-}
-
 data class Meeting(
         var m_id: Int,
         var menu: String,
@@ -46,13 +42,13 @@ data class CreateMeeting(
         var datetime: LocalDateTime = LocalDateTime.now(),
         var amity: Boolean = false,
         var ageGroup: Int = 0,
-        var number: Int = 0
+        var m_number: Int = 0
 )
 
 data class UpdateMeeting(
         var u_id: Int = 0,
         var action: String = "",
-        var status: Int = 0,
+        var status: Int = 0
 )
 
 @RequiresApi(Build.VERSION_CODES.O)
