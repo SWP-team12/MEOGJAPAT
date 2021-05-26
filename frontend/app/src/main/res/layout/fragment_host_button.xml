@@ -10,33 +10,40 @@
         android:id="@+id/host_cancel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
         android:text="식사 취소"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/host_confirm"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toTopOf="@id/host_eat_end" />
 
     <Button
         android:id="@+id/host_confirm"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
         android:text="식사 확정"
         app:layout_constraintStart_toEndOf="@id/host_cancel"
-        app:layout_constraintEnd_toStartOf="@id/host_end"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/host_meeting_end" />
+
+    <Button
+        android:id="@+id/host_eat_end"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="식사 종료"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/host_meeting_end"
+        app:layout_constraintTop_toBottomOf="@id/host_cancel"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <Button
-        android:id="@+id/host_end"
+        android:id="@+id/host_meeting_end"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:text="식사 종료"
-        app:layout_constraintStart_toEndOf="@id/host_confirm"
+        android:text="모임 종료"
+        app:layout_constraintStart_toEndOf="@id/host_eat_end"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/host_confirm"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

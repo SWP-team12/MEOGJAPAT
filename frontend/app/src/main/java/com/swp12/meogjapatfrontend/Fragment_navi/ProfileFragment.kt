@@ -1,16 +1,12 @@
 package com.swp12.meogjapatfrontend.Fragment_navi
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import com.swp12.meogjapatfrontend.GlobalApplication
 import com.swp12.meogjapatfrontend.R
@@ -18,7 +14,6 @@ import com.swp12.meogjapatfrontend.Refreshable
 import com.swp12.meogjapatfrontend.UserPreference
 import com.swp12.meogjapatfrontend.activity.LoginActivity
 import com.swp12.meogjapatfrontend.api.AgeGroup
-import com.swp12.meogjapatfrontend.api.User
 import com.swp12.meogjapatfrontend.api.UserInfo
 import com.swp12.meogjapatfrontend.dialog.EditProfileDialog
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -78,13 +73,13 @@ class ProfileFragment : Fragment(), Refreshable {
                 }
                 else {
                     Log.e("Profile", "Server Error - ${response.message()}")
-                    Toast.makeText(activity, "Server Error code ${response.code()}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, "서버 에러 코드 ${response.code()}", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<UserInfo>, t: Throwable) {
                 Log.e("Profile", "Retrofit Error - $t")
-                Toast.makeText(activity, "Retrofit Error - $t", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "연결 에러 - $t", Toast.LENGTH_SHORT).show()
             }
         })
     }

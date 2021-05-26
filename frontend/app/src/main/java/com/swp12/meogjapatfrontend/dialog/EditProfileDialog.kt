@@ -98,20 +98,20 @@ class EditProfileDialog : DialogFragment() {
         override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
             if (response.isSuccessful) {
                 Log.d("EditProfile", "User data successfully updated!")
-                Toast.makeText(context, "User data successfully updated!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "사용자 정보가 수정되었습니다!", Toast.LENGTH_SHORT).show()
 
                 val main = context as MainActivity
                 val parentFragment = main.supportFragmentManager.findFragmentByTag("f4") as ProfileFragment
                 parentFragment.refresh()
             } else {
                 Log.d("EditProfile", "Server Error - ${response.message()}")
-                Toast.makeText(context, "Server Error Code ${response.code()}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "서버 에러 코드 ${response.code()}", Toast.LENGTH_SHORT).show()
             }
         }
 
         override fun onFailure(call: Call<Unit>, t: Throwable) {
             Log.d("EditProfile", "Retrofit Error - $t")
-            Toast.makeText(context, "Retrofit Error - $t", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "연결 에러 - $t", Toast.LENGTH_SHORT).show()
         }
     }
 

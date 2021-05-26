@@ -72,8 +72,8 @@ class DetailActivity : AppCompatActivity(), Refreshable {
         val indicator = Indicator(data.m_number, current, data.status)
 
         val meetingInfo = MeetingInfo(
-            data.menu, data.place, data.time, data.amity,
-            data.m_age, data.participant_2, data.participant_3, data.participant_4
+            data.menu, data.place, data.time, data.amity, data.m_age,
+            data.u_id, data.participant_2, data.participant_3, data.participant_4
         )
 
         indicatorBundle = Bundle().apply {
@@ -117,7 +117,7 @@ class DetailActivity : AppCompatActivity(), Refreshable {
                     prtIdList.addAll(listOf(data.u_id, data.participant_2, data.participant_3, data.participant_4))
                     prtIdList.remove(GlobalApplication.INSTANCE.id.toInt())
 
-                    if (data.status == 1) PaymentDialog.newInstance(data.u_id, prtIdList).show(supportFragmentManager, "Payment")
+                    if (data.status == 2) PaymentDialog.newInstance(data.u_id, prtIdList).show(supportFragmentManager, "Payment")
                 }
                 else {
                     Log.d("Detail","Server Error - ${response.message()}")
@@ -145,6 +145,7 @@ data class MeetingInfo(
     val time: LocalDateTime,
     val amity: Boolean,
     val age: Int,
+    val u_id: Int? = null,
     val participantId1: Int? = null,
     val participantId2: Int? = null,
     val participantId3: Int? = null

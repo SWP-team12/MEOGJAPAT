@@ -62,18 +62,18 @@ class CreateActivity : AppCompatActivity() {
                 createMeetingCall.enqueue(object : Callback<Unit> {
                     override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
                         if (response.isSuccessful) {
-                            Log.d("Create", "Meeting successfully created!")
+                            Log.d("Create", "모임이 성공적으로 생성되었습니다!")
                             Toast.makeText(this@CreateActivity, "Meeting successfully created!", Toast.LENGTH_SHORT).show()
                             setResult(RESULT_OK)
                         } else {
                             Log.d("Create", "Server Error - ${response.message()}")
-                            Toast.makeText(this@CreateActivity, "Server Error code ${response.code()}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@CreateActivity, "서버 에러 코드 ${response.code()}", Toast.LENGTH_SHORT).show()
                         }
                     }
 
                     override fun onFailure(call: Call<Unit>, t: Throwable) {
                         Log.d("Create", "Retrofit Error - $t")
-                        Toast.makeText(this@CreateActivity, "Retrofit Error - $t", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@CreateActivity, "연결 에러 - $t", Toast.LENGTH_SHORT).show()
                     }
                 })
 
