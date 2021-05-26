@@ -1,20 +1,14 @@
 package com.swp12.meogjapatfrontend.Fragment_navi
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.swp12.meogjapatfrontend.GlobalApplication
 import com.swp12.meogjapatfrontend.R
 import com.swp12.meogjapatfrontend.Refreshable
@@ -34,7 +28,6 @@ class HomeFragment : Fragment(), Refreshable {
     private val showList: ArrayList<Meeting> = ArrayList() // 실제로 보여질 목록
     private var meetingAdapter = MeetingAdapter(showList)
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -43,6 +36,7 @@ class HomeFragment : Fragment(), Refreshable {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
