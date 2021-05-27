@@ -26,7 +26,7 @@ public class NotiController {
 	private NotiDAO notiDAO;
 	
 	/* 알림생성 */
-	@RequestMapping(value="/notification",method=RequestMethod.POST)
+	@RequestMapping(value="/notification", method=RequestMethod.POST)
 	public List<NotiDTO> makenoti(@RequestBody CreateNotification notification) throws Exception { //query String로 sns_id를 받도록 설정
 		NotiDTO param = new NotiDTO(0, notification.u_id, notification.m_id, notification.message);//전달 받은 nickname을 받은 UserDTO 객체 생성 이 객체는 MyBatis에 파라미터로 전달
 		List<NotiDTO> userList = notiDAO.makenoti(param);// 생성한 객체를 파라미터로 전달하여 DB로부터 사용자 목록을 불러온다.
@@ -35,9 +35,9 @@ public class NotiController {
 	
 	/* 알림목록 */
 	//query String로 u_id를 받도록 설정
-	@RequestMapping(value="/notification",method=RequestMethod.GET )
+	@RequestMapping(value="/notification", method=RequestMethod.GET)
 	public List<NotiDTO> shownoti(@RequestParam(value="u_id") int u_id) throws Exception { 
-		// 전달 받은 nickname을 받은 UserDTO 객체 생성 이 객체는 MyBatis에 파라미터로 전달
+		// 전달 받은 nickname을 받은 UserDTO 객체 생성, 이 객체는 MyBatis에 파라미터로 전달
 		NotiDTO param = new NotiDTO(0, u_id, 0, "");
 		List<NotiDTO> userList = notiDAO.shownoti(param);// 생성한 객체를 파라미터로 전달하여 DB로부터 사용자 목록을 불러온다.
 		return userList;

@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 import com.meogjabackend.Meeting.DTO.MeetingDTO;
 import com.meogjabackend.Meeting.Mapper.MeetingMapper;
 
-
-
 @Service
 public class MeetingServiceImpl implements MeetingService {
 	@Autowired
