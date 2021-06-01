@@ -53,9 +53,6 @@ interface BackendAPI {
     @DELETE("/meeting/{m_id}")
     fun deleteMeeting(@Path("m_id") id: Int) : Call<Unit>
 
-    @POST("/notification")
-    fun createNotification(@Body notification: CreateNotification) : Call<Unit>
-
     @GET("/notification")
     fun readNotification(@Query("u_id") id: Int) : Call<List<Notification>>
 

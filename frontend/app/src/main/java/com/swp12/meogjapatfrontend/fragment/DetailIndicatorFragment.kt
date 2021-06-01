@@ -46,7 +46,7 @@ class DetailIndicatorFragment : Fragment() {
 
         // 현재 모임 단계 설정
         val step = view.findViewById(R.id.stepper_indicator) as StepperIndicator
-        step.currentStep = indicatorData.status + 1
+        step.currentStep = indicatorData.status
         step.setLabels(listOf("참여자 모집", "맛있는 식사", "깔끔한 계산").toTypedArray())
 
         // (현재 인원)/(총 인원) 형태의 문자열 설정

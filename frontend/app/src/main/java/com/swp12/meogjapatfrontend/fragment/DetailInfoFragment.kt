@@ -28,11 +28,11 @@ class DetailInfoFragment : Fragment() {
         val meetingInfoData = requireArguments().getSerializable("meetingInfo") as MeetingInfo
 
         val infoList: ArrayList<String> = ArrayList()
-
         val prtList = listOf(meetingInfoData.participantId1, meetingInfoData.participantId2, meetingInfoData.participantId3)
         var participant = ""
+
+        participant += "주최자 ID : ${meetingInfoData.u_id}\n"
         for (index in prtList.indices) if (prtList[index] != 0) participant += "참여자 ${index + 1} ID : ${prtList[index]}\n"
-        if (participant.isEmpty()) participant = "참여를 기다리고 있어요!"
 
         // 실제 정보 채워넣기, 순서 지키기
         infoList.add(meetingInfoData.menu)

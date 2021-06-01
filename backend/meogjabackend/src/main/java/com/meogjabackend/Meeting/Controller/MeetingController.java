@@ -23,6 +23,8 @@ import org.springframework.web.server.ResponseStatusException;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.meogjabackend.Meeting.DTO.MeetingDTO;
 import com.meogjabackend.Meeting.Service.MeetingService;
+import com.meogjabackend.Noti.DAO.NotiDAO;
+import com.meogjabackend.Noti.DTO.NotiDTO;
 
 class CreateMeeting {
 	public int u_id;
@@ -50,6 +52,9 @@ public class MeetingController {
 
 	@Autowired
 	private MeetingService meetingService;
+	
+	@Autowired
+	private NotiDAO notiDAO;
 	
 	/* GET localhost:8080/meeting*/
 	/* GET localhost:8080/meeting?hostId=123*/
@@ -111,6 +116,36 @@ public class MeetingController {
     		/*status를 받아옵니다*/
     		meeting.setStatus(updateMeeting.status);
 			meetingService.startMeeting(meeting);
+			
+			/* 알림 생성 */
+			String msg = "";
+			String fmt = "참여하신 %d번 모임이 '%s' 상태로 변경되었어요!";
+			String status = "";
+			
+			switch (meeting.getStatus()) {
+			case 0:
+				status = "모집";
+				break;
+			case 1:
+				status = "확정";
+				break;
+			case 2:
+				status = "계산";
+				break;
+			default:
+				status = "알 수 없음";
+			}
+			msg = String.format(fmt, meeting.getM_id(), status);
+			
+			int[] notiList = { meeting.getU_id(), meeting.getParticipant_2(), meeting.getParticipant_3(), meeting.getParticipant_4() };
+			
+			for (int u_id : notiList) {
+				if (u_id != 0) {
+					NotiDTO notiDTO = new NotiDTO(0, u_id, meeting.getM_id(), msg);
+					notiDAO.makenoti(notiDTO);
+				}
+				
+			}
 		}       
     	/*parameter의 u_id와 게시글의 u_id가 다를시*/
     	else {
